@@ -10,11 +10,6 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.actividadparejas5.controllers.RegistroClienteController">
 
-    <!-- El ToggleGroup no es visual: se declara aparte y los RadioButton lo referencian -->
-    <fx:define>
-        <ToggleGroup fx:id="tgTipoSolicitud" />
-    </fx:define>
-
     <top>
         <Label text="Datos del cliente"
                style="-fx-font-size: 16px; -fx-font-weight: bold;">
@@ -77,8 +72,11 @@
                               GridPane.rowIndex="5" GridPane.columnIndex="1">
                             <children>
                                 <RadioButton fx:id="rbNueva" mnemonicParsing="false"
-                                             selected="true" text="Nueva"
-                                             toggleGroup="$tgTipoSolicitud" />
+                                             selected="true" text="Nueva">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="tgTipoSolicitud" />
+                                    </toggleGroup>
+                                </RadioButton>
                                 <RadioButton fx:id="rbRenovacion" mnemonicParsing="false"
                                              text="Renovación"
                                              toggleGroup="$tgTipoSolicitud" />
@@ -106,10 +104,14 @@
                 <VBox alignment="TOP_CENTER" spacing="8.0" prefWidth="190.0">
                     <children>
                         <Label text="Fotografía:" />
-                        <ImageView fx:id="imgFotografia"
-                                   fitHeight="180.0" fitWidth="180.0"
-                                   pickOnBounds="true" preserveRatio="true"
-                                   style="-fx-background-color: #e7e5df;" />
+                        <StackPane prefHeight="180.0" prefWidth="180.0"
+                                   style="-fx-background-color: #e7e5df; -fx-border-color: #b6b2a9;">
+                            <children>
+                                <ImageView fx:id="imgFotografia"
+                                           fitHeight="180.0" fitWidth="180.0"
+                                           pickOnBounds="true" preserveRatio="true" />
+                            </children>
+                        </StackPane>
                         <Button fx:id="btnSeleccionarFoto" mnemonicParsing="false"
                                 onAction="#onSeleccionarFoto"
                                 prefWidth="180.0" text="Seleccionar fotografía..." />
