@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="356.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.actividadparejas5.controllers.LoginController">
+   <children>
+      <Label layoutX="60.0" layoutY="157.0" text="Ingrese el nombre de usuario" />
+      <TextField fx:id="txtUsuario" layoutX="60.0" layoutY="175.0" onAction="#onEnterUsuario" prefHeight="26.0" prefWidth="458.0" promptText="Insercion del nombre de usuario" />
+      <Label layoutX="58.0" layoutY="225.0" text="Ingrese la contraseña " />
+      <PasswordField fx:id="txtContrasena" layoutX="58.0" layoutY="243.0" onAction="#onEnterContrasena" prefHeight="26.0" prefWidth="458.0" promptText="Insercion de la contraseña" />
+      <Button fx:id="btnSalir" layoutX="475.0" layoutY="297.0" mnemonicParsing="false" onAction="#onSalir" text="Salir " />
+      <Button fx:id="btnIniciarSesion" layoutX="372.0" layoutY="297.0" mnemonicParsing="false" onAction="#onIniciarSesion" text="Iniciar Sesion" />
+      <Label layoutX="253.0" layoutY="70.0" text="Sistema">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="252.0" layoutY="98.0" text="Solicitud">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="281.0" layoutY="88.0" prefHeight="18.0" prefWidth="16.0" text="de">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMensaje" layoutX="60.0" layoutY="289.0" text="Complete todos los campos" />
+   </children>
+</AnchorPane>

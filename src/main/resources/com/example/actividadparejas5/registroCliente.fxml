@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="640.0" prefWidth="760.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.actividadparejas5.controllers.RegistroClienteController">
+
+    <!-- El ToggleGroup no es visual: se declara aparte y los RadioButton lo referencian -->
+    <fx:define>
+        <ToggleGroup fx:id="tgTipoSolicitud" />
+    </fx:define>
+
+    <top>
+        <Label text="Datos del cliente"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;">
+            <BorderPane.margin>
+                <Insets bottom="15.0" left="25.0" right="25.0" top="20.0" />
+            </BorderPane.margin>
+        </Label>
+    </top>
+
+    <center>
+        <HBox spacing="25.0">
+            <padding>
+                <Insets left="25.0" right="25.0" />
+            </padding>
+            <children>
+
+                <!-- Columna izquierda: el formulario -->
+                <GridPane hgap="12.0" vgap="10.0" HBox.hgrow="ALWAYS">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="290.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="NEVER" />
+                    </rowConstraints>
+                    <children>
+
+                        <Label text="Nombres:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                        <TextField fx:id="txtNombres" promptText="Ej. María Fernanda"
+                                   onKeyTyped="#onSoloLetras"
+                                   GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                        <Label text="Apellidos:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                        <TextField fx:id="txtApellidos" promptText="Ej. López Bermúdez"
+                                   onKeyTyped="#onSoloLetras"
+                                   GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                        <Label text="Tipo de cliente:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                        <ComboBox fx:id="cmbTipoCliente" prefWidth="290.0"
+                                  promptText="Seleccione..."
+                                  GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                        <Label text="Ciudad:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                        <ComboBox fx:id="cmbCiudad" prefWidth="290.0"
+                                  promptText="Seleccione..."
+                                  GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+                        <Label text="Fecha de nacimiento:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                        <DatePicker fx:id="dtpFechaNacimiento" prefWidth="200.0"
+                                    GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+                        <Label text="Tipo de solicitud:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+                        <HBox spacing="18.0" alignment="CENTER_LEFT"
+                              GridPane.rowIndex="5" GridPane.columnIndex="1">
+                            <children>
+                                <RadioButton fx:id="rbNueva" mnemonicParsing="false"
+                                             selected="true" text="Nueva"
+                                             toggleGroup="$tgTipoSolicitud" />
+                                <RadioButton fx:id="rbRenovacion" mnemonicParsing="false"
+                                             text="Renovación"
+                                             toggleGroup="$tgTipoSolicitud" />
+                                <RadioButton fx:id="rbReclamo" mnemonicParsing="false"
+                                             text="Reclamo"
+                                             toggleGroup="$tgTipoSolicitud" />
+                            </children>
+                        </HBox>
+
+                        <Label text="Servicios de interés:" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+                        <FlowPane hgap="18.0" vgap="8.0"
+                                  GridPane.rowIndex="6" GridPane.columnIndex="1">
+                            <children>
+                                <CheckBox fx:id="chkInternet" mnemonicParsing="false" text="Internet" />
+                                <CheckBox fx:id="chkTelefonia" mnemonicParsing="false" text="Telefonía" />
+                                <CheckBox fx:id="chkTelevision" mnemonicParsing="false" text="Televisión" />
+                                <CheckBox fx:id="chkSoporte" mnemonicParsing="false" text="Soporte técnico" />
+                            </children>
+                        </FlowPane>
+
+                    </children>
+                </GridPane>
+
+                <!-- Columna derecha: la fotografía -->
+                <VBox alignment="TOP_CENTER" spacing="8.0" prefWidth="190.0">
+                    <children>
+                        <Label text="Fotografía:" />
+                        <ImageView fx:id="imgFotografia"
+                                   fitHeight="180.0" fitWidth="180.0"
+                                   pickOnBounds="true" preserveRatio="true"
+                                   style="-fx-background-color: #e7e5df;" />
+                        <Button fx:id="btnSeleccionarFoto" mnemonicParsing="false"
+                                onAction="#onSeleccionarFoto"
+                                prefWidth="180.0" text="Seleccionar fotografía..." />
+                    </children>
+                </VBox>
+
+            </children>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+            <padding>
+                <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+            </padding>
+            <children>
+                <Button fx:id="btnCancelar" mnemonicParsing="false"
+                        onAction="#onCancelar" prefWidth="100.0" text="Cancelar" />
+                <Button fx:id="btnLimpiar" mnemonicParsing="false"
+                        onAction="#onLimpiar" prefWidth="100.0" text="Limpiar" />
+                <Button fx:id="btnGuardar" mnemonicParsing="false"
+                        onAction="#onGuardar" prefWidth="110.0" text="Guardar"
+                        defaultButton="true" />
+            </children>
+        </HBox>
+    </bottom>
+
+</BorderPane>

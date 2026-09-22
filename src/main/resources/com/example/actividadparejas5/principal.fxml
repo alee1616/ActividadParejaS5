@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="500.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.actividadparejas5.controllers.PrincipalController">
+
+    <!-- ContextMenu: se define aparte porque no es hijo visual de nadie -->
+    <fx:define>
+        <ContextMenu fx:id="ctxMenuPrincipal">
+            <items>
+                <MenuItem fx:id="cmiActualizar" mnemonicParsing="false"
+                          onAction="#onActualizar" text="Actualizar información" />
+                <MenuItem fx:id="cmiVerTotal" mnemonicParsing="false"
+                          onAction="#onVerTotalClientes" text="Ver total de clientes" />
+            </items>
+        </ContextMenu>
+    </fx:define>
+
+    <top>
+        <VBox>
+            <children>
+                <MenuBar fx:id="menuBarPrincipal">
+                    <menus>
+                        <Menu fx:id="menuArchivo" mnemonicParsing="false" text="Archivo">
+                            <items>
+                                <MenuItem fx:id="miRegistroCliente" mnemonicParsing="false"
+                                          onAction="#onAbrirRegistro" text="Registro de cliente" />
+                                <MenuItem fx:id="miConsultaClientes" mnemonicParsing="false"
+                                          onAction="#onAbrirConsulta" text="Consulta de clientes" />
+                                <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem fx:id="miCarpetaDestino" mnemonicParsing="false"
+                                          onAction="#onSeleccionarCarpeta" text="Carpeta de destino..." />
+                                <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem fx:id="miCerrarSesion" mnemonicParsing="false"
+                                          onAction="#onCerrarSesion" text="Cerrar sesión" />
+                                <MenuItem fx:id="miSalir" mnemonicParsing="false"
+                                          onAction="#onSalir" text="Salir" />
+                            </items>
+                        </Menu>
+                        <Menu fx:id="menuAyuda" mnemonicParsing="false" text="Ayuda">
+                            <items>
+                                <MenuItem fx:id="miAcercaDe" mnemonicParsing="false"
+                                          onAction="#onAcercaDe" text="Acerca de..." />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+
+                <ToolBar fx:id="toolBarPrincipal" prefHeight="40.0">
+                    <items>
+                        <Button fx:id="btnBarraRegistro" mnemonicParsing="false"
+                                onAction="#onAbrirRegistro" text="Registrar cliente" />
+                        <Button fx:id="btnBarraConsulta" mnemonicParsing="false"
+                                onAction="#onAbrirConsulta" text="Consultar clientes" />
+                        <Separator orientation="VERTICAL" />
+                        <Label fx:id="lblUsuarioActivo" text="Sesión: —" />
+                    </items>
+                </ToolBar>
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox fx:id="panelCentral" spacing="20.0"
+              onContextMenuRequested="#onMostrarContextMenu">
+            <padding>
+                <Insets bottom="30.0" left="35.0" right="35.0" top="30.0" />
+            </padding>
+            <children>
+                <Label fx:id="lblBienvenida" text="Bienvenida, usuario"
+                       style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+                <HBox spacing="20.0">
+                    <children>
+                        <Button fx:id="btnRegistroCliente" mnemonicParsing="false"
+                                onAction="#onAbrirRegistro"
+                                prefHeight="120.0" prefWidth="230.0"
+                                text="Registro de cliente" wrapText="true" />
+                        <Button fx:id="btnConsultaClientes" mnemonicParsing="false"
+                                onAction="#onAbrirConsulta"
+                                prefHeight="120.0" prefWidth="230.0"
+                                text="Consulta de clientes" wrapText="true" />
+                    </children>
+                </HBox>
+
+                <Label text="Clic derecho sobre el panel para más opciones."
+                       style="-fx-text-fill: #5c5850;" />
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>
