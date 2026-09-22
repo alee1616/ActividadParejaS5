@@ -1,6 +1,9 @@
 package com.example.actividadparejas5.controllers;
 
+import com.example.actividadparejas5.models.GestorDatos;
 import javafx.event.ActionEvent;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.layout.VBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -55,6 +58,9 @@ public class PrincipalController {
     private MenuItem cmiVerTotal;
 
     @FXML
+    private VBox panelCentral;
+
+    @FXML
     private void onAbrirRegistro(ActionEvent event) {
         cambiarEscena("registroCliente.fxml", "Registro de Cliente");
     }
@@ -92,10 +98,23 @@ public class PrincipalController {
 
     @FXML
     private void onActualizar(ActionEvent event) {
+        lblBienvenida.setText(lblBienvenida.getText());
+        mostrarAlerta(Alert.AlertType.INFORMATION, "Actualizado",
+                "La informacion en pantalla fue actualizada.");
     }
 
     @FXML
     private void onVerTotalClientes(ActionEvent event) {
+        int total = GestorDatos.getClientes().size();
+        mostrarAlerta(Alert.AlertType.INFORMATION, "Total de clientes",
+                "Clientes registrados: " + total);
+    }
+
+    // El VBox no es un Control, asi que no tiene propiedad contextMenu:
+    // hay que mostrarlo a mano con las coordenadas de pantalla del evento.
+    @FXML
+    private void onMostrarContextMenu(ContextMenuEvent event) {
+        ctxMenuPrincipal.show(panelCentral, event.getScreenX(), event.getScreenY());
     }
 
     private void cambiarEscena(String fxml, String titulo) {
